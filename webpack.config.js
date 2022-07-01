@@ -40,12 +40,21 @@ module.exports = {
         }
       },
       {
+        test: /\.svg$/,
+        use: [{
+          loader: '@svgr/webpack',
+          options: {
+            typescript: true,
+          }
+        }],
+      },
+      {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
             loader: 'file-loader',
