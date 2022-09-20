@@ -41,12 +41,28 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        resourceQuery: {not: [/url/]},
         use: [{
           loader: '@svgr/webpack',
           options: {
-            typescript: true,
+            prettier: false,
+            svgo: false,
+            svgoConfig: {
+              plugins: [{ removeViewBox: false }],
+            },
+            titleProp: true,
+            ref: true,
           }
         }],
+      },
+      {
+        test: /\.svg$/i,
+        resourceQuery: /url/,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       },
       {
         test: /\.scss$/,
